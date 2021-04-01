@@ -14,7 +14,7 @@ template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return true
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return true; } return false; }
 
 ll n, l, k;
-vector<ll> a(10010);
+vector<ll> a(10100);
 
 bool solve(ll m)
 {
