@@ -15,25 +15,24 @@ template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return true
 
 int main()
 {
-    int h, w;
-    cin >> h >> w;
-    int a[h][w];
-    vector<int> x(h), y(w);
-    
-    rep(i,h) {
-        rep(j,w) {
-            cin >> a[i][j];
-            x[i] += a[i][j];
-            y[j] += a[i][j];
-        }
-    }
-
-    rep(i,h) {
-        rep(j,w) {
-            if (j) cout << " ";
-            cout << (x[i] + y[j] - a[i][j]);
-            if (j == w - 1) cout << endl;
-        }
-    }
-    return 0;
+	int	h, w;
+	cin >> h >> w;
+	int a[h][w];
+	vector<int> H(h), W(w);
+	rep(i,h) {
+		rep(j,w) {
+			cin >> a[i][j];
+			H[i] += a[i][j];
+			W[j] += a[i][j];
+		}
+	}
+	rep(i,h) {
+		rep(j,w) {
+			if (j)
+				cout << " ";
+			cout << H[i] + W[j] - a[i][j];
+		}
+		cout << endl;
+	}
+	return 0;
 }
