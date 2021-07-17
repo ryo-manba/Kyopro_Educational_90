@@ -17,7 +17,7 @@ int main()
 {
 	int	n;
 	cin >> n;
-	vector<int> ans;
+	vector<int> vec;
 	map<string, int> mp;
 	rep(i,n)
 	{
@@ -25,9 +25,9 @@ int main()
 		cin >> s;
 		mp[s]++;
 		if (mp[s] == 1)
-			ans.push_back(i + 1);
+			vec.push_back(i + 1);
 	}
-	for (auto x : ans)
+	for (auto x : vec)
 		cout << x << endl;
 	return 0;
 }
