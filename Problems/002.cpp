@@ -15,32 +15,42 @@ template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return true
 
 int main()
 {
-    int n;
-    cin >> n;
-    vector<char> ans;
-    if (n % 2 == 1) // n が奇数だった場合はreturn
-    {
-        cout << endl;
-        return 0;
-    }
-    rep(i, n / 2) ans.push_back('(');
-    rep(i, n / 2) ans.push_back(')');
-
-    bool flag = true;
-    do {
-        rep(i,n) cout << ans[i];
-        for (int k = 0; k < n; k += 2)
-        {
-            if (ans[k] == '(' && ans[k + 1] == ')')  // n 個の () が出来たら終了
-                flag = true;
-            else
-            {
-                flag = false;
-                break;
-            }
-        }
-        cout << endl;
-        if (flag)   break;
-    } while(next_permutation(ans.begin(), ans.end()));
-    return 0;
+	int n;
+	cin >> n;
+	bool flag;
+	vector<char> ans;
+	if (n % 2 == 1)
+	{
+		cout << endl;
+		return 0;
+	}
+	rep(i,n)
+	{
+		if (i < n / 2)
+			ans.push_back('(');
+		else
+			ans.push_back(')');
+	}
+	do {
+		int t = 0;
+		flag = true;
+		rep(i,n)
+		{
+			if (ans[i] == '(')
+				t++;
+			if (ans[i] == ')')
+				t--;
+			if (t < 0)
+				flag = false;
+		}
+		if (!flag)
+			continue;
+		rep(i,n)
+		{
+			cout << ans[i];
+			if (i == n - 1)
+				cout << endl;
+		}
+	} while(next_permutation(ans.begin(), ans.end()));
+	return 0;
 }
