@@ -17,40 +17,23 @@ int main()
 {
 	int n;
 	cin >> n;
-	bool flag;
-	vector<char> ans;
-	if (n % 2 == 1)
+
+	if (n % 2 == 1) return 0;
+	string s;
+	rep(i,n / 2) s.push_back('(');
+	rep(i,n / 2) s.push_back(')');
+
+	do
 	{
-		cout << endl;
-		return 0;
-	}
-	rep(i,n)
-	{
-		if (i < n / 2)
-			ans.push_back('(');
-		else
-			ans.push_back(')');
-	}
-	do {
-		int t = 0;
-		flag = true;
+		int cnt = 0;
 		rep(i,n)
 		{
-			if (ans[i] == '(')
-				t++;
-			if (ans[i] == ')')
-				t--;
-			if (t < 0)
-				flag = false;
+			if (s[i] == '(') cnt++;
+			if (s[i] == ')') cnt--;
+			if (cnt == -1) break;
 		}
-		if (!flag)
-			continue;
-		rep(i,n)
-		{
-			cout << ans[i];
-			if (i == n - 1)
-				cout << endl;
-		}
-	} while(next_permutation(ans.begin(), ans.end()));
+		if (cnt == -1) continue;
+		cout << s << endl;
+	} while (next_permutation(s.begin(), s.end()));
 	return 0;
 }
