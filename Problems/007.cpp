@@ -22,20 +22,15 @@ int main()
 	cin >> q;
 	vector<int> b(q);
 	rep(i,q) cin >> b[i];
-
 	sort(a.begin(), a.end());
+
 	rep(i,q)
 	{
-		int tmp1,tmp2;
-		auto iter = lower_bound(a.begin(),a.end(), b[i]);
-		tmp1 = abs(b[i] - *iter);
-		if (iter - a.begin() != 0)
-		{
-			iter--;
-			tmp2 = abs(b[i] - *iter);
-			chmin(tmp1, tmp2);
-		}
-		cout << tmp1 << endl;
+		auto it = lower_bound(a.begin(), a.end(), b[i]);
+		int over  = abs(b[i] - *it);
+		if (it != a.begin()) it--;
+		int under = abs(b[i] - *it);
+		cout << min(over, under) << endl;
 	}
 	return 0;
 }
