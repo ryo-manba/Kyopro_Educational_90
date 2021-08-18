@@ -48,7 +48,7 @@ int main()
 	{
 		rep(j,limit)
 		{
-			if (cnt[i][j] >= 1) // i番目に重なってるか
+			if (cnt[i][j] >= 1) // 紙が1枚でもあれば重なってる枚数分ansを増やす
 				ans[cnt[i][j]]++;
 		}
 	}
