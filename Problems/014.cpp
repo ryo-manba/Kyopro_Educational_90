@@ -13,18 +13,18 @@ int dy[]={1, -1, 0, 0};
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return true; } return false; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return true; } return false; }
 
+int n;
+int a[100100], b[100100];
+ll ans;
+
 int main()
 {
-	ll n, ans = 0;
 	cin >> n;
-	vector<ll> a(n), b(n);
 	rep(i,n) cin >> a[i];
 	rep(i,n) cin >> b[i];
-	sort(a.begin(), a.end());
-	sort(b.begin(), b.end());
-
-	rep(i,n)
-		ans += abs(a[i] - b[i]);
+	sort(a, a + n);
+	sort(b, b + n);
+	rep(i,n) ans += abs(a[i] - b[i]);
 	cout << ans << endl;
 	return 0;
 }
