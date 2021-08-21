@@ -15,32 +15,21 @@ template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return true
 
 int main()
 {
-	int n, tmp1, tmp2, ans = INF;
-	vector<int> a(3);
+	ll n, a, b, c;
 	cin >> n;
-	rep(i,3) cin >> a[i];
-	sort(a.rbegin(), a.rend());
+	cin >> a >> b >> c;
 
-	for (int i = n / a[0]; i >= 0; i--)
+	ll ans = INFL;
+	for (ll i = 0; i <= 9999; i++)
 	{
-		tmp1 = n - a[0] * i;
-		if (tmp1 == 0)
+		for (ll j = 0; j <= 9999 - i; j++)
 		{
-			chmin(ans, i);
-			break ;
-		}
-		for (int j = tmp1 / a[1]; j >= 0; j--)
-		{
-			tmp2 = tmp1 - a[1] * j;
-			if (tmp2 == 0)
+			ll tmp = n - (a * i) - (b * j);
+			if (tmp < 0) continue;
+			if (tmp % c == 0)
 			{
-				chmin(ans, i + j);
-				break ;
-			}
-			if  (tmp2 % a[2] == 0)
-			{
-				chmin(ans, i + j + tmp2 / a[2]);
-				break ;
+				ll cnt = i + j + tmp / c;
+				chmin(ans, cnt);
 			}
 		}
 	}
