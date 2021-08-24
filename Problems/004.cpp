@@ -13,23 +13,27 @@ int dy[]={1, -1, 0, 0};
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return true; } return false; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return true; } return false; }
 
+int h, w;
+int a[2020][2020];
+int H[2020], W[2020];
+
 int main()
 {
-	int	h, w;
 	cin >> h >> w;
-	int a[h][w];
-	vector<int> H(h), W(w);
-	rep(i,h) {
-		rep(j,w) {
+	rep(i,h)
+	{
+		rep(j,w)
+		{
 			cin >> a[i][j];
 			H[i] += a[i][j];
 			W[j] += a[i][j];
 		}
 	}
-	rep(i,h) {
-		rep(j,w) {
-			if (j)
-				cout << " ";
+	rep(i,h)
+	{
+		rep(j,w)
+		{
+			if (j) cout << " ";
 			cout << H[i] + W[j] - a[i][j];
 		}
 		cout << endl;
