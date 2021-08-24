@@ -50,14 +50,9 @@ int main()
 			if (flag == false) vec.push_back(idx); // ビットが立っている値が全て同じ数字だったら配列に追加する。
 		}
 		int cntH = 0, cntW = maxi_w(vec); // cntWには横で条件を満たしている数
-		rep(j,h)
-		{
-			if ((i & (1 << j)) != 0) cntH += 1; // cntHには縦で条件を満たしている数
-		}
+		cntH += __builtin_popcount(i); // cntHには縦で条件を満たしている数
 		chmax(ans, (cntH * cntW)); // ansは縦横で条件を満たしている個数
 	}
 	cout << ans << endl;
 	return 0;
 }
-
-
