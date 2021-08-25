@@ -13,19 +13,14 @@ int dy[]={1, -1, 0, 0};
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return true; } return false; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return true; } return false; }
 
-// log2a < blog2cかどうか。
-
 int main()
 {
-	ll a, b, c, tmp;
+	ll a, b, c, x;
 	cin >> a >> b >> c;
 
-	tmp = c;
-	rep(i,b - 1)
-		tmp *= c;
-	if (a < tmp)
-		cout << "Yes" << endl;
-	else
-		cout << "No" << endl;
+	x = c;
+	rep(i,b - 1) x *= c;
+	if (a < x) cout << "Yes" << endl;
+	else cout << "No" << endl;
 	return 0;
 }
