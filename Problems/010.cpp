@@ -13,32 +13,29 @@ int dy[]={1, -1, 0, 0};
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return true; } return false; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return true; } return false; }
 
+int n, q;
+int c[100010], p[100010], l[100010], r[100010];
+int x[100010], y[100010];
+
 int main()
 {
-	int n, q;
 	cin >> n;
-	vector<int> c(n), p(n), ans1(n + 1), ans2(n + 1);
+	rep(i,n) cin >> c[i] >> p[i];
+	cin >> q;
+	rep(i,q) cin >> l[i] >> r[i];
+
 	rep(i,n)
 	{
-		cin >> c[i] >> p[i];
-		if (c[i] == 1)
-		{
-			ans1[i + 1] = ans1[i] + p[i];
-			ans2[i + 1] = ans2[i];
-		}
-		if (c[i] == 2)
-		{
-			ans1[i + 1] = ans1[i];
-			ans2[i + 1] = ans2[i] + p[i];
-		}
+		if (c[i] == 1) x[i + 1] = p[i];
+		if (c[i] == 2) y[i + 1] = p[i];
+		x[i + 1] += x[i];
+		y[i + 1] += y[i];
 	}
-	cin >> q;
-	vector<int> l(q), r(q);
 	rep(i,q)
 	{
-		cin >> l[i] >> r[i];
-		cout << (ans1[r[i]])-(ans1[l[i] - 1]) << " ";
-		cout << (ans2[r[i]])-(ans2[l[i] - 1]) << endl;
+		int ansx = x[r[i]] - x[l[i] - 1];
+		int ansy = y[r[i]] - y[l[i] - 1];
+		cout << ansx << " " << ansy << endl;
 	}
 	return 0;
 }
