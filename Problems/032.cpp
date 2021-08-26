@@ -13,44 +13,47 @@ int dy[]={1, -1, 0, 0};
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return true; } return false; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return true; } return false; }
 
-int	a[10][10] = {};
-vector<int> x(50), y(50);
+int n, m;
+int a[20][20];
+int x[100], y[100];
+bool naka[100][100];
 
 int main()
 {
-	int n, m, ans = INF;
 	cin >> n;
 	rep(i,n) rep(j,n) cin >> a[i][j];
 	cin >> m;
 	rep(i,m) cin >> x[i] >> y[i];
 
 	vector<int> vec;
-	rep(i,n) vec.push_back(i);
+	rep(i,n) vec.push_back(i+1); // 順列全探索用の配列
+	rep(i,m) // バトンを渡せないところをチェックする
+	{
+		naka[x[i]][y[i]] = true;
+		naka[y[i]][x[i]] = true;
+	}
 
-	do {
-		int tmp = 0;
+	int ans = INF;
+	do
+	{
+		int sum = 0;
 		bool flag = true;
-		rep(i,m)
+		rep(i,n - 1)
 		{
-			rep(j,n - 1)
+			if (naka[vec[i]][vec[i + 1]] == true) // バトンが渡せないところがあればその数列は満たさない
 			{
-				if ((vec[j] == x[i] - 1 && vec[j + 1] == y[i] - 1)
-					|| (vec[j] == y[i] -1 && vec[j + 1] == x[i] - 1))
-				{
-					flag = false;
-					break ;
-				}
+				flag = false;
+				break;
 			}
 		}
-		if (flag)
+		if (flag == true) // ゴールにたどり着けたらそれまでのコストを計算する
 		{
-			rep(i,n) tmp += a[vec[i]][i];
-			chmin(ans,tmp);
+			rep(i,n) sum += a[vec[i]- 1][i];
+			chmin(ans, sum);
 		}
-	} while (next_permutation(vec.begin(), vec.end()));
+	} while(next_permutation(vec.begin(), vec.end()));
 
-	if (ans == INF)
-		ans = -1;
+	if (ans == INF) ans = -1;
 	cout << ans << endl;
 	return 0;
 }
