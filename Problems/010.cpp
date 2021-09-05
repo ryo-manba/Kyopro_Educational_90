@@ -13,29 +13,28 @@ int dy[]={1, -1, 0, 0};
 template<class T> inline bool chmax(T& a, T b) { if (a < b) { a = b; return true; } return false; }
 template<class T> inline bool chmin(T& a, T b) { if (a > b) { a = b; return true; } return false; }
 
-int n, q;
-int c[100010], p[100010], l[100010], r[100010];
-int x[100010], y[100010];
+int	n, q;
+int	a[100010], b[100010];
 
 int main()
 {
 	cin >> n;
-	rep(i,n) cin >> c[i] >> p[i];
-	cin >> q;
-	rep(i,q) cin >> l[i] >> r[i];
-
-	rep(i,n)
+	for (int i = 1; i <= n; i++)
 	{
-		if (c[i] == 1) x[i + 1] = p[i];
-		if (c[i] == 2) y[i + 1] = p[i];
-		x[i + 1] += x[i];
-		y[i + 1] += y[i];
+		int	c, p;
+		cin >> c >> p;
+		a[i] = a[i - 1];
+		b[i] = b[i - 1];
+		if (c == 1) a[i] += p;
+		if (c == 2) b[i] += p;
 	}
+
+	cin >> q;
 	rep(i,q)
 	{
-		int ansx = x[r[i]] - x[l[i] - 1];
-		int ansy = y[r[i]] - y[l[i] - 1];
-		cout << ansx << " " << ansy << endl;
+		int	x, y;
+		cin >> x >> y;
+		cout << a[y] - a[x-1] << " " << b[y] - b[x-1] << endl;
 	}
 	return 0;
 }
